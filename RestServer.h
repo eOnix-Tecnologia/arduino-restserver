@@ -30,7 +30,7 @@
 
 
 #ifndef OUTPUT_BUFFER_SIZE
-#define OUTPUT_BUFFER_SIZE 1024
+#define OUTPUT_BUFFER_SIZE 2048
 #endif
 
 #define JSON_START() addToBuffer("{ ");
