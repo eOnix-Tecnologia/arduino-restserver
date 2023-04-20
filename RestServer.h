@@ -47,6 +47,7 @@
 #define DELETE "DELETE"
 #define OPTIONS "OPTIONS"
 
+#define MAX_LENGTH 10240
 
 struct Routes {
   char * method;
@@ -85,10 +86,12 @@ public:
   EthernetClient client_;
 
 private:
+  char json[MAX_LENGTH];
   Routes routes_[ROUTES_TOTAL];
   uint16_t routesIndex_;
   char buffer_[OUTPUT_BUFFER_SIZE];
   uint16_t bufferIndex_;  
+  
   EthernetServer& server_;
   
   void check();  
