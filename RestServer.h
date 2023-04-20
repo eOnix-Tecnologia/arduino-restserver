@@ -56,6 +56,7 @@ struct Routes {
 
 class RestServer {
 public:
+  int buffLen = 0;
   RestServer(EthernetServer& client);
   
   void run();
@@ -79,6 +80,8 @@ public:
   int available();
   bool connect();
   void stop();
+  void clear();
+  char* getBodyBuffer();
   EthernetClient client_;
 
 private:
@@ -90,6 +93,7 @@ private:
   
   void check();  
   void addToBuffer(char * value);
+ 
   
   
 };

@@ -46,6 +46,25 @@ int RestServer::getBody(char* buffer, int length){
 	return count;
 }
 
+void RestServer::clear(){
+  for (int i=0;i<buffLen; i++){
+    json[i] = 0;
+  }
+  buffLen = 0;
+}
+
+char* RestServer::getBodyBuffer(){
+  long time = millis();
+  while(buffLen < MAX_LENGTH && millis() - time < 1000) {
+    if (available()) {
+      json[buffLen] = read();
+      buffLen++;
+      time = millis();
+    }
+  }
+  return json;
+}
+
 
 String RestServer::getBodyArray(){
   String json = "";
