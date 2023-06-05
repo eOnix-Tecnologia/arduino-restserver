@@ -47,6 +47,7 @@
 #define DELETE (char *) "DELETE"
 #define OPTIONS (char *) "OPTIONS"
 
+#define MAX_LENGTH 10240
 
 struct Routes {
   char * method;
@@ -56,6 +57,7 @@ struct Routes {
 
 class RestServer {
 public:
+  int buffLen = 0;
   RestServer(EthernetServer& client);
   
   void run();
@@ -79,17 +81,22 @@ public:
   int available();
   bool connect();
   void stop();
+  void clear();
+  char* getBodyBuffer();
   EthernetClient client_;
 
 private:
+  char json[MAX_LENGTH];
   Routes routes_[ROUTES_TOTAL];
   uint16_t routesIndex_;
   char buffer_[OUTPUT_BUFFER_SIZE];
   uint16_t bufferIndex_;  
+  
   EthernetServer& server_;
   
   void check();  
   void addToBuffer(char * value);
+ 
   
   
 };
