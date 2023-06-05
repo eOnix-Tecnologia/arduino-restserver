@@ -33,19 +33,19 @@
 #define OUTPUT_BUFFER_SIZE 2048
 #endif
 
-#define JSON_START() addToBuffer("{ ");
-#define JSON_CLOSE() addToBuffer(" }");
+#define JSON_START() addToBuffer((char *) "{ ");
+#define JSON_CLOSE() addToBuffer((char *) " }");
 
 
 #define METHODS_LENGTH 7
-#define ANY "*"
-#define GET "GET"
-#define PUT "PUT"
-#define HEAD "HEAD"
-#define POST "POST"
-#define TRACE "TRACE"
-#define DELETE "DELETE"
-#define OPTIONS "OPTIONS"
+#define ANY (char *) "*"
+#define GET (char *) "GET"
+#define PUT (char *) "PUT"
+#define HEAD (char *) "HEAD"
+#define POST (char *) "POST"
+#define TRACE (char *) "TRACE"
+#define DELETE (char *) "DELETE"
+#define OPTIONS (char *) "OPTIONS"
 
 
 struct Routes {

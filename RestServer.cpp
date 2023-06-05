@@ -127,7 +127,7 @@ void RestServer::addRoute(char * method, const char * route, void (*f)(char * pa
 }
 
 void RestServer::addToBuffer(char * value) {
-  for (int i = 0; i < strlen(value); i++){
+  for (unsigned int i = 0; i < strlen(value); i++){
     buffer_[bufferIndex_+i] = value[i];  
   }
   bufferIndex_ = bufferIndex_ + strlen(value);
@@ -140,14 +140,14 @@ void RestServer::addData(const char* name, char * value) {
   // Format the data as:
   // "name":"value",
   bufferAux[idx++] = '"';
-  for (int i = 0; i < strlen(name); i++){
+  for (unsigned int i = 0; i < strlen(name); i++){
     bufferAux[idx++] = name[i];
   }
   bufferAux[idx++] = '"';
 
   bufferAux[idx++] = ':';
   bufferAux[idx++] = '"';
-  for (int i = 0; i < strlen(value); i++){
+  for (unsigned int i = 0; i < strlen(value); i++){
     bufferAux[idx++] = value[i];  
   }
   bufferAux[idx++] = '"';
@@ -163,14 +163,14 @@ void RestServer::addData(const char* name, String& value){
   uint16_t idx = 0;
 
   bufferAux[idx++] = '"';
-  for (int i = 0; i < strlen(name); i++){
+  for (unsigned int i = 0; i < strlen(name); i++){
     bufferAux[idx++] = name[i];
   }
   bufferAux[idx++] = '"';
 
   bufferAux[idx++] = ':';
   bufferAux[idx++] = '"';
-  for (int i = 0; i < value.length(); i++){
+  for (unsigned int i = 0; i < value.length(); i++){
     bufferAux[idx++] = value.charAt(i);  
   }
   bufferAux[idx++] = '"';
@@ -239,7 +239,7 @@ void RestServer::send(uint16_t chunkSize, uint16_t delayTime) {
 
 void RestServer::sendRaw(String mensagem){
 	// Serial.println("[sendRaw] "+mensagem);
-	for (int i=0; i<mensagem.length(); i+=1024){
+	for (unsigned int i=0; i<mensagem.length(); i+=1024){
 		client_.print(mensagem.substring(i, i+1024));
 	}	
 	// client_.flush();
